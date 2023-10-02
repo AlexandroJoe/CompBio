@@ -1,3 +1,7 @@
+aminoAcid = "NAN"
+dnaSequence = "AAUGCUAAU"
+
+
 def translate_codon(cod):
     tc = {
         "TTT": "Phe - (F)", "TTC": "Phe - (F)", "TTA": "Leu - (L)", "TTG": "Leu - (L)",
@@ -26,14 +30,14 @@ def translate_codon(cod):
     else:
         return None
 
-def find_codon_frequency(dna_sequence, amino_acid):
+def find_codon_frequency(dnaSequence, aminoAcid):
     codon_count = {}
-    dna_sequence = dna_sequence.upper()  
+    dnaSequence = dnaSequence.upper()  
 
-    for i in range(0, len(dna_sequence) - 2, 3):
-        codon = dna_sequence[i:i+3]
+    for i in range(0, len(dnaSequence) - 2, 3):
+        codon = dnaSequence[i:i+3]
         amino_acid_translation = translate_codon(codon)
-        if amino_acid_translation == amino_acid:
+        if amino_acid_translation == aminoAcid:
             if codon in codon_count:
                 codon_count[codon] += 1
             else:
@@ -41,10 +45,7 @@ def find_codon_frequency(dna_sequence, amino_acid):
 
     return codon_count
 
-# Example usage
-amino_acid = "NAN"
-dna_sequence = "AAUGCUAAU"
-codon_frequency = find_codon_frequency(dna_sequence, amino_acid)
+frequency = find_codon_frequency(dnaSequence, aminoAcid)
 
-for codon, frequency in codon_frequency.items():
+for codon, frequency in frequency.items():
     print(f"{codon}: {frequency}")
